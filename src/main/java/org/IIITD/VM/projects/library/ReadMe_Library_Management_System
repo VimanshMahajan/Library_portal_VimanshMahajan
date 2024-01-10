@@ -1,0 +1,113 @@
+
+
+# Library Management System - Class Overview
+USE PASSWORD: Librarian_IIITD when asked for while signing into the Librarian Interface.
+## Student (org.IIITD.VM.projects.library.Student.Student)
+
+- **Function**: Represents library members (students) and their interactions with books and fines.
+
+- **Key Attributes**:
+  - `name`: Student's name.
+  - `age`: Student's age.
+  - `phone_num`: Student's phone number.
+  - `books_with_member`: Number of books currently issued to the student.
+  - `student_ID`: Unique identifier for the student.
+  - `issued_books`: Keeps track of books issued to the student with issue times.
+
+- **Primary Functions**:
+  - `issue_book()`: Allows students to issue books, considering limits and fines.
+  - `return_book()`: Enables students to return books, potentially with fines.
+  - `check_fine_for_lib()`: Calculates fines for overdue books.
+  - `fine_per_book()`: Calculates fines for a specific book.(1 sec equivalent to 1 day)
+  - `see_your_books()`: Shows a list of books currently issued to the student.
+
+## Library (org.IIITD.VM.projects.library.Library.Library)
+
+- **Function**: Manages library members and books.
+
+- **Key Attributes**:
+  - `stu_obj`: An ArrayList of Student objects representing library members.
+  - `lib_books`: A HashMap representing available library books.
+
+## Librarian (org.IIITD.VM.projects.library.Librarian.Librarian)
+
+- **Function**: Provides administrative functions for librarians.
+
+- **Primary Functions**:
+  - `reg_mem()`: Allows librarians to register new members (students). Mantaining ArrayList of student objects.
+  - `remove_mem()`: Enables removal of members, with checks for fines and book limits.Although unique member ids are generated,
+  the removal is done through phone number, which has been handled to be unique for a given run of code.
+  - `add_book()`: Allows librarians to add new books to the library. Using HASHMAP data structure
+  - `remove_book()`: Permits removal of books, considering their availability.
+  - `view_all_books()`: Displays a list of all library books.
+  - `member_fines_and_books()`: Shows member fines and their issued books.
+
+## mainHelper (org.IIITD.VM.projects.library.mainHelper.mainHelper)
+
+- **Function**: Handles the main program flow and user interactions.
+
+---
+
+These classes collectively create a functional Library Management System, allowing students to issue and return books, checking fines,
+and providing administrative control to librarians. The `mainHelper` class serves as the entry point and smoothens the interactions between
+students and librarians.
+***********************************************************************************************************************************************
+
+Object-Oriented Programming Concepts Used:
+1. Encapsulation
+Description: Each class encapsulates its data (attributes) and behavior (methods) within itself, ensuring data integrity and reducing code
+coupling.
+Example in Code: Encapsulation is evident in the Student and Librarian classes, where private fields (e.g., name, age) are accessed and
+modified using public getter and setter methods, ensuring controlled access to class attributes. The use of public and private attributes
+and methods is visible throughout the classes.
+2. Abstraction
+Description: The system abstracts essential features of a library, focusing on student, librarian, and book interactions
+while hiding implementation details.
+Example in Code: Abstraction is achieved by providing user-friendly methods and interfaces for both librarians and students.
+The main program (mainHelper) abstracts the underlying complexities of library management.
+
+3. Modularity
+Description: The system practices modularity by organizing functionality into separate classes (e.g., Student, Librarian, Library)
+for better code maintainability.
+Example in Code: The code is modular, with each class (Student, Librarian, Library) responsible for specific functionalities.
+This enhances code readability and maintainability.
+
+4. Composition and Aggregation
+Description: Composition and aggregation relationships model the library system, allowing complex structures to be built
+by combining simpler objects.
+Example in Code: Composition and aggregation are implied in the structure of the library system. For instance, the Library
+class aggregates collections of students (stu_obj) and books (lib_books), creating a whole system from these simpler objects.
+
+
+***********************************************************************************************************************************************
+Class Relationships involved:
+
+
+##Composition
+It describes a class that references one or more objects of other classes in instance variables.
+1->Library Class and Student Class
+Composition is used to establish a relationship between the Library class and the Student class.
+The Library class has an ArrayList<Student> stu_obj, which means that the Library class contains instances of the Student class.
+This allows the library to manage its members (students).
+
+
+## Association
+
+--Association between Library and Student:
+The Library class maintains an ArrayList stu_obj to store instances of the Student class, representing a relationship between
+the library and its members (students).
+Example: public static ArrayList<Student> stu_obj = new ArrayList<>();
+
+--Association between Library and Librarian:
+Similarly, the Library class maintains an ArrayList of Librarian instances, indicating the association between the
+library and librarian.
+Example: public static ArrayList<Librarian> librarian_obj = new ArrayList<>();
+
+--Association between Student and Library:
+The Student class interacts with the Library class through methods like member_login(). This represents a form of
+association where students are associated with the library to log in and perform actions.
+Example: Library.member_login();
+
+NAME: VIMANSH MAHAJAN
+ROLL NO: 2022572
+EMAIL ID: vimansh22572@iiitd.ac.in
